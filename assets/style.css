@@ -1,0 +1,49 @@
+:root {
+    --headings: 'Indie Flower', cursive;
+    --font: 'Montserrat', sans-serif;
+    --blue: #1070c1;
+    --red: #FE0002;
+    --yellow: #dbdb1b;
+    --green: #00AF52;
+    --white: #FFFFFF;
+    --grey: #f3efef;
+
+}
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+body {
+    font-family: var(--font);
+}
+
+h1 {
+    font-family: var(--headings);
+    font-weight: 700;
+    font-size: 4em;
+    text-align: center;
+    margin: 15px;
+}
+#date-time{
+    color:  var(--blue)
+}
+.btn{
+    border-radius: 25px;
+    float: right;
+}
+#date-time{
+    font-size: 1.5em;
+}
+#one{
+    color: var(--yellow);
+}
+#two{
+    color: var(--red);
+}
+#three{
+    color: var(--green);
+}
+#four{
+    color: var(--blue);
+}
