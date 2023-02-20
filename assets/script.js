@@ -30,7 +30,9 @@ function saveTodo(e){
     date: dueDate
   };
   //Push the new project into the stored projects
+
   projects.push(newProject);
+  saveProjects(projects);
   console.log(projects);
 
   //Clear the 3:
@@ -40,6 +42,31 @@ function saveTodo(e){
 }
 
 // Gets the todos from localStorage:
-function getTodos(){
-  localStorage.getItem()
+function getTodos(projects){
+ let allProjects = JSON.parse(localStorage.getItem('projects'));
+ if(!allProjects){
+  projects = [];
+ }
+ else return projects;
+}
+//Saves it to localStorage:
+function saveProjects(projects){
+  localStorage.setItem('projects', JSON.stringify(projects));
+}
+//Function to display the new todo:
+function displayTodo(){
+  //Clear the todo list before hand:
+  projectDisplay.empty();
+  //Iterate over the saved todos and display them on the screen
+  for(let i = 0; i < projects.length; i++){
+    let project = projects[i];
+    let rowEl = $('<tr>');
+    let nameEl = $('<td>').html(project.name);
+    let languageEl = $('<td>').html(project.language);
+    let dateEl = $('<td>').html(project.date);
+    //Append all the little ones to the row
+    rowEl.append(nameEl, languageEl, dateEl);
+    //Append the row, and little ones to the main container
+    projectDisplay.append(rowEl);
+  }
 }
