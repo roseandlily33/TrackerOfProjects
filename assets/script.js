@@ -4,17 +4,20 @@ let dateInput = $('.dateSel');
 let projectForm = $('.project-form');
 let projectDisplay = $('.project-display');
 let saveButton = $('.save');
+let deleteButton = $('.deleteBtn');
 
 //DayJS:
 function timer(){
-var today = dayjs().format('MMMM DD, YYYY  hh:mm:ss a')
+var today = dayjs().format('MMMM DD, YYYY  hh:mm a')
 $('#date-time').text(today);}
 setInterval(timer, 1000);
 timer();
 
-let todoArray = [];
+let todoArray = JSON.parse(localStorage.getItem('projects')) || [];
+console.log(todoArray);
 
 saveButton.on('click', saveTodo);
+deleteButton.on('click', deleteTodo);
 
 function saveTodo(e){
     e.preventDefault;
@@ -27,7 +30,7 @@ function saveTodo(e){
     
     todoArray.push(madeTodo);
     saveProjects(todoArray);
-    displayTodos(saveProjects);
+    displayTodos(todoArray);
 
     projectNameInput.val('');
     languagesInput.val('');
@@ -42,31 +45,35 @@ function saveProjects(projectArray){
 
 function getProjects(){
 let savedProjects = JSON.parse(localStorage.getItem('projects'));
-console.log('parsed' + savedProjects);
 if(savedProjects !== null){
-    console.log('not saved');
-    todoArray = [];
-}
- console.log('saved');
- displayTodos(savedProjects);
-}
+    console.log('saved');
+    displayTodos(savedProjects);
+}}
 
 function displayTodos(array){
     projectDisplay.empty();
     for(let i = 0; i < array.length; i++){
         let projectItem = array[i];
-        let rowEl = document.createElement('tr');
-        let projectEl = document.createElement('td').textContent(projectItem.project);
-        let languageEl = document.createElement('td').textContent(projectItem.language);
-        let dateEl = document.createElement('td').textContent(projectItem.date);
-        rowEl.append(projectEl, languageEl, dateEl);
+        let rowEl = $('<tr>');
+        let projectEl = $('<td class="project">').html(projectItem.project);
+        let languageEl = $('<td class="language">').html(projectItem.language);
+        let dateEl = $('<td class="date">').html(projectItem.date);
+        let deleteEl = $('<td><button class="deleteBtn">DELETE</button></td>');
+        rowEl.append(projectEl, languageEl, dateEl, deleteEl);
         projectDisplay.append(rowEl);
     }
 }
-//Things to do:
-//Save values in text box and save to local storage with saveButton.on('click', saveTodo);
+function deleteTodo(e){
+    console.log('Button was clicked');
+    e.preventDefault();
+    e.remove();
+    
+}
+
+getProjects();
+
 //Do a delete funciton
 // Display the values using a for loop
-// do a getTodos() that displays the list on page load
+
 
 

@@ -14,7 +14,7 @@ Coming Soon
 Coming Soon 
 
 ## Difficulties
-
+This project was hard when I first tried it, and now going back to it about 6 weeks later it was a lot easier, and I was able to do more and figure out so much of it, which shows great progress. 
 
 ## How to use:
 Select the Add new project button on the top right in red, put in your prokect name, the languages that are associated with the project and it's due date, press save changes in green, and your project should appear on the screen. To delete a project press the X on the right hand side. 

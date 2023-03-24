@@ -23,20 +23,20 @@ h1 {
     font-weight: 700;
     font-size: 4em;
     text-align: center;
-    margin: 15px;
+    padding: 0.5em;
 }
 #date-time{
-    color:  var(--blue)
+    color:  var(--blue);
+    font-size: 1.2em;
 }
 .btn{
     border-radius: 25px;
     float: right;
 }
-#date-time{
-    font-size: 1.5em;
-}
-#one{
-    color: var(--yellow);
+#two, #three, #four{
+    font-size: 1.6em;
+    text-align: center;
+    font-family: var(--headings);
 }
 #two{
     color: var(--red);
@@ -46,4 +46,18 @@ h1 {
 }
 #four{
     color: var(--blue);
+}
+.table{
+    margin-top: 1.3em;
+}
+.deleteBtn{
+    color: white;
+    background-color: var(--yellow);
+    border: none;
+    padding: 0.5em;
+    border-radius: 25px;
+}
+.project, .language, .date{
+   text-align: center;
+
 }
