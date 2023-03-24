@@ -76,7 +76,7 @@ function deleteTodo(index){
     //e.preventDefault();
     console.log('Button was clicked');
     //todoArray.splice(index, 1);
-    $('rowEl').remove();
+    $('projectDisplay').remove('rowEl');
     //$('projectDisplay').remove('.rowEl');
    //projectDisplay.remove(index);
     console.log('After clicked')
