@@ -64,10 +64,9 @@ function displayTodos(array){
     }
 }
 function deleteTodo(e){
-    console.log('Button was clicked');
     e.preventDefault();
-    e.remove();
-    
+    console.log('Button was clicked');
+   // e.remove();
 }
 
 getProjects();
