@@ -1,72 +1,72 @@
-  let projectNameInput = $('.projectName');
-  let languagesInput = $('.languages');
-  let dateInput = $('.dateSel');
-  let projectForm = $('.project-form');
-  let projectDisplay = $('.project-display');
-  let saveButton = $('.save');
-  
-  //DayJS:
+let projectNameInput = $('.projectName');
+let languagesInput = $('.languages');
+let dateInput = $('.dateSel');
+let projectForm = $('.project-form');
+let projectDisplay = $('.project-display');
+let saveButton = $('.save');
+
+//DayJS:
 function timer(){
-  var today = dayjs().format('MMMM DD, YYYY  hh:mm:ss a')
-  $('#date-time').text(today);}
-  setInterval(timer, 1000);
-  timer();
-//Called when the page loads:
-getTodos();
- //On click I want it to set and display:
+var today = dayjs().format('MMMM DD, YYYY  hh:mm:ss a')
+$('#date-time').text(today);}
+setInterval(timer, 1000);
+timer();
+
+let todoArray = [];
+
 saveButton.on('click', saveTodo);
 
 function saveTodo(e){
-  e.preventDefault();
-  //Save all 3 to local Storage:
-  let projectName = projectNameInput.val();
-  let languages = languagesInput.val();
-  let dueDate = dateInput.val();
+    e.preventDefault;
 
-  //Save the 3 in a object for localStorage
-  let newProject = {
-    name: projectName,
-    language: languages,
-    date: dueDate
-  };
-  //Push the new project into the stored projects
+    let madeTodo = {
+        project: projectNameInput.val(),
+        language: languagesInput.val(),
+        date: dateInput.val(),
+    }
+    
+    todoArray.push(madeTodo);
+    saveProjects(todoArray);
+    displayTodos(saveProjects);
 
-  projects.push(newProject);
-  saveProjects(projects);
-  console.log(projects);
-
-  //Clear the 3:
-  projectNameInput.val('');
-  languagesInput.val('');
-  dateInput.val('');
+    projectNameInput.val('');
+    languagesInput.val('');
+    dateInput.val('');
+    console.log(todoArray)
 }
 
-// Gets the todos from localStorage:
-function getTodos(projects){
- let allProjects = JSON.parse(localStorage.getItem('projects'));
- if(!allProjects){
-  projects = [];
- }
- else return projects;
+function saveProjects(projectArray){
+    localStorage.setItem('projects', JSON.stringify(projectArray));
+    console.log('Saved to local Storage')
 }
-//Saves it to localStorage:
-function saveProjects(projects){
-  localStorage.setItem('projects', JSON.stringify(projects));
+
+function getProjects(){
+let savedProjects = JSON.parse(localStorage.getItem('projects'));
+console.log('parsed' + savedProjects);
+if(savedProjects !== null){
+    console.log('not saved');
+    todoArray = [];
 }
-//Function to display the new todo:
-function displayTodo(){
-  //Clear the todo list before hand:
-  projectDisplay.empty();
-  //Iterate over the saved todos and display them on the screen
-  for(let i = 0; i < projects.length; i++){
-    let project = projects[i];
-    let rowEl = $('<tr>');
-    let nameEl = $('<td>').html(project.name);
-    let languageEl = $('<td>').html(project.language);
-    let dateEl = $('<td>').html(project.date);
-    //Append all the little ones to the row
-    rowEl.append(nameEl, languageEl, dateEl);
-    //Append the row, and little ones to the main container
-    projectDisplay.append(rowEl);
-  }
+ console.log('saved');
+ displayTodos(savedProjects);
 }
+
+function displayTodos(array){
+    projectDisplay.empty();
+    for(let i = 0; i < array.length; i++){
+        let projectItem = array[i];
+        let rowEl = document.createElement('tr');
+        let projectEl = document.createElement('td').textContent(projectItem.project);
+        let languageEl = document.createElement('td').textContent(projectItem.language);
+        let dateEl = document.createElement('td').textContent(projectItem.date);
+        rowEl.append(projectEl, languageEl, dateEl);
+        projectDisplay.append(rowEl);
+    }
+}
+//Things to do:
+//Save values in text box and save to local storage with saveButton.on('click', saveTodo);
+//Do a delete funciton
+// Display the values using a for loop
+// do a getTodos() that displays the list on page load
+
+
