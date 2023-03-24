@@ -67,6 +67,7 @@ function deleteTodo(e){
     e.preventDefault();
     console.log('Button was clicked');
    // e.remove();
+   
 }
 
 getProjects();
