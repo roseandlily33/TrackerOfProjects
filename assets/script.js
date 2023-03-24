@@ -17,8 +17,16 @@ let todoArray = JSON.parse(localStorage.getItem('projects')) || [];
 console.log(todoArray);
 
 saveButton.on('click', saveTodo);
-deleteButton.on('click', deleteTodo);
+projectDisplay.on('click', '.deleteBtn', deleteTodo);
 
+//$('.deleteBtn').click(function(){
+   // console.log('Button was clicked');
+    //todoArray.splice(index, 1);
+    //$('rowEl').remove();
+    //$('projectDisplay').remove('.rowEl');
+   //projectDisplay.remove(index);
+    console.log('After clicked')
+//})
 function saveTodo(e){
     e.preventDefault;
 
@@ -62,18 +70,21 @@ function displayTodos(array){
         rowEl.append(projectEl, languageEl, dateEl, deleteEl);
         projectDisplay.append(rowEl);
     }
+    
 }
-function deleteTodo(e){
-    e.preventDefault();
+function deleteTodo(index){
+    //e.preventDefault();
     console.log('Button was clicked');
-   // e.remove();
-   
+    //todoArray.splice(index, 1);
+    $('rowEl').remove();
+    //$('projectDisplay').remove('.rowEl');
+   //projectDisplay.remove(index);
+    console.log('After clicked')
+    //displayTodos(savedProjects);
 }
 
 getProjects();
 
-//Do a delete funciton
-// Display the values using a for loop
 
 
 
