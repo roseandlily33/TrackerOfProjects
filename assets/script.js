@@ -83,7 +83,9 @@ function deleteTodo(index){
     //displayTodos(savedProjects);
 }
 
+
 getProjects();
+
 
 
 
