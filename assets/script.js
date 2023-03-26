@@ -19,14 +19,6 @@ console.log(todoArray);
 saveButton.on('click', saveTodo);
 projectDisplay.on('click', '.deleteBtn', deleteTodo);
 
-//$('.deleteBtn').click(function(){
-   // console.log('Button was clicked');
-    //todoArray.splice(index, 1);
-    //$('rowEl').remove();
-    //$('projectDisplay').remove('.rowEl');
-   //projectDisplay.remove(index);
-    console.log('After clicked')
-//})
 function saveTodo(e){
     e.preventDefault;
 
@@ -66,23 +58,20 @@ function displayTodos(array){
         let projectEl = $('<td class="project">').html(projectItem.project);
         let languageEl = $('<td class="language">').html(projectItem.language);
         let dateEl = $('<td class="date">').html(projectItem.date);
-        let deleteEl = $('<td><button class="deleteBtn">DELETE</button></td>');
+        let deleteEl = $('<td><button class="deleteBtn" data-index ='+ i +'">DELETE</button></td>');
         rowEl.append(projectEl, languageEl, dateEl, deleteEl);
         projectDisplay.append(rowEl);
     }
-    
-}
-function deleteTodo(index){
-    //e.preventDefault();
-    console.log('Button was clicked');
-    //todoArray.splice(index, 1);
-    $('projectDisplay').remove('rowEl');
-    //$('projectDisplay').remove('.rowEl');
-   //projectDisplay.remove(index);
-    console.log('After clicked')
-    //displayTodos(savedProjects);
 }
 
+function deleteTodo(e){
+    //e.preventDefault();
+    let projectsDel = JSON.parse(localStorage.getItem('projects'));
+    var projectIndex = parseInt($(this).attr('data-index').slice(e, 1));
+    projectsDel.splice(projectIndex, 1);
+    saveProjects(projectsDel)
+    displayTodos(projectsDel);
+}
 
 getProjects();
 
